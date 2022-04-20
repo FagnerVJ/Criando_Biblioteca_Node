@@ -2,7 +2,7 @@ const chalk = require('chalk');
 const fs = require('fs');
 
 const trataErro = (erro) => {
-    throw new Error(chalk.red(erro)) // está jogando um erro no sistema
+    throw new Error(chalk.red(erro.erro, "Verique o caminho")) // está jogando um erro no sistema
 }
 
 const pegarArquivo= (caminhoDoArquivo) => {
