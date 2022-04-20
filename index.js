@@ -5,19 +5,27 @@ const trataErro = (erro) => {
     throw new Error(chalk.red(erro.erro, "Verique o caminho")) // está jogando um erro no sistema
 }
 
-const pegarArquivo= (caminhoDoArquivo) => {
-    const encoding = 'utf-8'; 
-    fs.readFile(caminhoDoArquivo, encoding, (erro, data) => {
-        if(erro){
-            trataErro(erro);
-        }else{
-            return console.log(chalk.green(data));
-        }
+// const pegarArquivo = (caminhoDoArquivo) => {
+//     const encoding = 'utf-8'; 
+//     fs.readFile(caminhoDoArquivo, encoding, (erro, data) => {
+//         if(erro){
+//             trataErro(erro);
+//         }else{
+//             return console.log(chalk.green(data));
+//         }
         
-    })
+//     })
+// }
+
+const pegarArquivo = (caminhoDoArquivo) => {
+    const encoding = 'utf-8'; 
+    fs.promises
+    .readFile(caminhoDoArquivo, encoding)
+    .then((data)  => {console.log(chalk.green(data))})
+    .catch((erro) => {trataErro(erro)})
 }
 
-pegarArquivo('./arquivos/texto.md');
+pegarArquivo('./arquivos/texto1.md');
 
 
 //fs.readFile(file, [encoding],[callback])//CallBack
